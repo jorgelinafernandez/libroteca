@@ -17,7 +17,6 @@ class HomeListView(ListView):
 
 
 class LibroDetailView(DetailView):
-    # specify the model to use
     model = Libro
     template_name = 'libros/detalle_libro.html'
     context_object_name = 'libro'
