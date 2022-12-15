@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">Seleccionar categoría para filtrar libros</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+  </div>
+</div>
+
+
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Seleccionar categoría
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    {% for categoria in categorias %}
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item text-center" href="{% url 'filtro_libro_categoria' categoria.id %}">{{ categoria.genero }}</a>
+    {% endfor %}
+    <div class="dropdown-divider"></div>
+
+
+  </div>
+</div>
+
+
+{% endblock %}

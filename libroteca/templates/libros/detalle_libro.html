@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <main role="main" class="container">
+      <h1 class="mt-5">{{libro.titulo}} de {{libro.autor.nombre}} {{libro.autor.apellido}} </h1>
+      <h4 class="h4">Detalle del libro</h4>
+      <p class="lead">{{ libro.descripcion }}</p>
+      <a type="button" class="btn btn-success" href="/resenias/libro/{{libro.id}}/crear">Dejar reseña</a>
+      <a type="button" class="btn btn-info" href="/resenias/libro/{{libro.id}}">Ver reseñas</a>
+      <a type="button" class="btn btn-info" href="{{ libro.link }}">{% if libro.gratuito %} Descargar libro {% else %} Comprar {% endif %}</a>
+    </main>
+
+{% endblock %}

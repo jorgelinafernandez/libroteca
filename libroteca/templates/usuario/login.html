@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <form method="POST" class="form-signin">
+        {% csrf_token %}
+        <div class="text-center mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-book-fill currentColor" viewBox="0 0 16 16">
+            <path d="M8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+        </svg>
+        <h1 class="h3 mb-3 font-weight-normal">Ingresar</h1>
+        <p>
+            Si usted ya se encuentra registrado, por favor, inicie sesión.
+        </p>
+        </div>
+
+        <div class="form-label-group">
+            <input type="text" id="{{ form.username.auto_id }}" name="{{ form.username.name }}" class="form-control" placeholder="Usuario" required autofocus>
+            <label for="{{ form.username.auto_id }}">Usuario</label>
+        </div>
+
+        <div class="form-label-group">
+            <input type="password" id="{{ form.password.auto_id }}" name="{{ form.password.name }}" class="form-control" placeholder="Password" required>
+            <label for="{{ form.password.auto_id }}">Clave</label>
+        </div>
+
+        <div class="checkbox mb-3">
+        </div>
+        <div class="form-row text-center">
+            <div class="col-12">
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar sesión</button>
+            </div>
+        </div>
+
+        <p class="mt-5 mb-0 text-muted text-center">Si aún no te registrate, <a href="/usuario/registro">click aqui</a></p>
+        <p class="mb-0 text-muted text-center">¿No queres iniciar sesión? <a href="/">Volvé al inicio</a></p>
+
+</form>
+  {% endblock %}

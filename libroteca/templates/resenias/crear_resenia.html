@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<a id="backto">
+    <div class="mb-5">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+        </svg>
+    </div>
+</a>
+
+<form method="post">
+    {% csrf_token %}
+    <input type="hidden" id="id_libro" name="libro" />
+    <input type="hidden" id="id_usuario" name="usuario" value="{{request.user.id}}"/>
+
+    <div class="form-floating mb-2">
+        <textarea class="form-control" placeholder="Leave a comment here" id="id_descripcion" name="descripcion" required></textarea>
+        <label for="floatingTextarea">Resenia</label>
+    </div>
+
+    <div class="form-label-group">
+        <input type="number" name="calificacion" id="id_calificacion" class="form-control" placeholder="Calificación" min="0" max="5" required>
+        <label for="id_calificacion">Calificación</label>
+    </div>
+
+    <input type="submit" class="btn btn-success" value="Guardar">
+</form>
+
+<script>
+    const id_libro = window.location.pathname.split('/')[3]
+    $('input[name="libro"]').val(id_libro);
+
+    const backto = document.getElementById('backto')
+    backto.setAttribute("href", '/libro/' + id_libro);
+    
+</script>
+
+{% endblock %}
+

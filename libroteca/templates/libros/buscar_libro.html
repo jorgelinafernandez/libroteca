@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Buscar libro por titulo.</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+        </div>
+    </div>
+
+    <form class="form-inline" id="searchForm" method='get' action="#">
+      <input id="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+    </form>
+
+
+    <div class="row mt-2">
+            <table class="table">
+              <tbody>
+                {% for libro in libros %}
+                  <tr>
+                    <td><img src="{% static 'img/libro.png' %}" alt="" width="32" height="32" class="me-2"></td>
+                    <td><a href="{% url 'detalle_libro' libro.id %}">{{ libro.titulo }}</a></td>
+                    <td>{{ libro.fecha|date:"d/m/Y" }}</td>
+                  </tr>
+                {% endfor %}
+
+              </tbody>
+            </table>
+    </div>
+
+    <script>
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      search = urlParams.get('search')
+      $('input[name="search"]').val(search);
+      $('#searchForm').on('submit',function(e){
+        e.preventDefault();
+        var formData=$(this).serialize();
+        var path = window.location.pathname;
+        var finalUrl = path + "?" + formData;
+        window.location.href = finalUrl;
+      });
+    </script>
+
+{% endblock %}
